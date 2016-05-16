@@ -1,6 +1,8 @@
 # fs-h5
 Decorate future HTML5 file api to node style file system api. 
 
+[![NPM](https://nodei.co/npm/fs-h5.png?stars&downloads)](https://nodei.co/npm/fs-h5/)
+
 ## headers-up
 >In April 2014, it was [announced on public-webapps](http://lists.w3.org/Archives/Public/public-webapps/2014AprJun/0010.html) that the Filesystem API spec is not being considered by other browsers. For now, the API is Chrome-specific and it's unlikely to be implemented by other browsers and is no longer being standardized with the W3C.
 
