@@ -1,0 +1,45 @@
+html {
+	font-size: 12px;
+}
+
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	width: 500px;
+	margin: 0 auto;
+	padding: 50px;
+	background: #EFE9E9;
+}
+
+#title {
+	font-size: 3rem;
+	border: 1px solid green;
+	width: 400px;
+	display: block;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#content {
+	margin-top: 20px;
+	font-size: 2rem;
+	border: 1px solid #AEB9AE;
+	width: 400px;
+	display: block;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+button {
+	width: 100px;
+	height: 30px;
+	color: #ffffff;
+	background: green;
+	border-width: 0;
+	margin: 5px;
+}
