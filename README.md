@@ -59,7 +59,7 @@ Actuall it's only supported by Chrome, and also several envs which are using Chr
 
 It is localated in example folder. Please following its guide to deploy it in you local machine.
 
-[Online Example](https://rawgit.com/wangpin34/fs-h5/master/example/index.online.html)
+[Online Example](https://rawgit.com/wangpin34/fs-h5/master/example/index.html)
 
 ## References
 * [HTML5 filesytem](http://www.html5rocks.com/en/tutorials/file/filesystem/)
