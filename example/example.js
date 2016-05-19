@@ -1,7 +1,7 @@
 window.onload = function(){
 
 
-	fs.requestQuoto(10*10*1024,function(){
+	fs.init(10*10*1024,function(){
 
 		fs.mkdir('/docs/files/', function(dirEntry){
 			

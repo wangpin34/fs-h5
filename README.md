@@ -26,9 +26,13 @@ Actuall it's only supported by Chrome, and also several envs which are using Chr
 
 ## API
 
-* fs.requestQuoto(bytes, callback)
+* fs.init(bytes, callback)
 	
-    Request specified spaces file sandbox. This function should be called before all fs api perform.
+    Initialize specified spaces file sandbox. This function should be called before all fs api perform.
+
+* fs.isInitialized()
+	
+	Return the state about if file system is initialized succssfully.
 
 * fs.mkdir(path, callback)
 	
