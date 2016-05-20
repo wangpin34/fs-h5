@@ -1,3 +1,3 @@
-import fs from 'src/fs'
+import fs from './src/fs'
 
 export default fs
