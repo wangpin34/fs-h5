@@ -1,9 +1,10 @@
-window.onload = function(){
+import fs from '../src/fs'
 
+window.onload = function(){
 
 	fs.init(10*10*1024,function(){
 
-		fs.mkdir('/docs/files/', function(dirEntry){
+		fs.mkdir('/docs/files/', function(err, dirEntry){
 			
 			console.log('/docs/files/ created successfully');
 
@@ -14,7 +15,7 @@ window.onload = function(){
 
 
 		var list = function(){
-			fs.list('/', function(entries){
+			fs.list('/', function(err, entries){
 				var files = entries.filter(function(entry){
 					return entry.isFile;
 				})
@@ -47,7 +48,7 @@ window.onload = function(){
 				return;
 			}
 
-			fs.writeFile(title, text, function(){
+			fs.writeFile(title, text, function(err){
 				alert('save ' + title + ' successfully');
 				list();
 			})

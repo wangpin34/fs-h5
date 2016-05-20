@@ -1,1 +1,3 @@
-module.exports = require('./lib/fs')
+import fs from 'src/fs'
+
+export default fs
