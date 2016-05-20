@@ -2,3 +2,7 @@ node_modules
 .babelrc
 lib
 example
+build
+.gitignore
+.gulpfile.js
+webpack.config.js
