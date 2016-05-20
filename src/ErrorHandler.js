@@ -1,7 +1,6 @@
 export default class ErrorHandler {
 
-	static generate( {prefix = '', callback = e =>{}} ) {
-		!prefix && (prefix = 'Error:');
+	static generate( prefix = 'Error', callback = err =>{} ) {
 		return e => {
 			let msg = ''
 	  
@@ -32,10 +31,10 @@ export default class ErrorHandler {
 
 	static logger(msg = '', type = '') {
 		switch(type){
-			case 'info': console.info(msg); break;
-			case 'warn': console.warn(msg); break;
-			case 'error': console.error(msg); break;
-			default: console.log(msg);
+			case 'info': console.info(msg); break
+			case 'warn': console.warn(msg); break
+			case 'error': console.error(msg); break
+			default: console.log(msg)
 		}
 	}
 
