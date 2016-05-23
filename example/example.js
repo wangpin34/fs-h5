@@ -4,6 +4,8 @@ window.onload = function(){
 
 	fs.init(10*10*1024,function(){
 
+		fs.existsFile('a.td',function(err,exists){console.log(exists)})
+
 		fs.mkdir('/docs/files/', function(err, dirEntry){
 			
 			console.log('/docs/files/ created successfully');

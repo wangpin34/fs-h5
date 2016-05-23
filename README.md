@@ -46,6 +46,28 @@ For simple usage, please download standalone release.
 	
 	Return the state that indicates whether file system is initialized succssfully.
 
+* fs.existsDir(path, callback)
+
+  Test whether or not the given directory exists by checking with the file system. Then call the callback argument with either true or false. Example:
+
+ 	```
+ 	fs.exists(path, (err, exists) => {
+	  console.log(exists ? 'it\'s there' : 'non-exist!');
+	});
+
+ 	```
+
+* fs.existsFile(path, callback)
+
+  Test whether or not the given file exists by checking with the file system. Then call the callback argument with either true or false. Example:
+
+ 	```
+ 	fs.exists(path, (err, exists) => {
+	  console.log(exists ? 'it\'s there' : 'non-exist!');
+	});
+
+ 	```
+
 * fs.mkdir(path, callback)
 	
     Create directory. If parent dir non-exists, it will try to create parent dir firstly.

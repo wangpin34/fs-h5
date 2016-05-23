@@ -27,33 +27,62 @@ export default class fs {
 				initializing = false;
 				initialized = true;
 				callback(null, h5fs)
-			}, ErrorHandler.generate('init file system', callback));
+			}, ErrorHandler.generate('init file system', callback))
 
 		})
+	}
+
+	static existsDir(path, callback=()=>{}) {
+
+		let handler = (err, callback) => {
+			if(err.code === FileError.NOT_FOUND_ERR){
+				callback(null, false)	
+			} else {
+				ErrorHandler.generate('Make dir ' + path, callback)
+			}
+		}
+
+		FS.root.getDirectory(path, {}, direntry => {
+			callback(null, true)
+		}, err => {handler(err, callback)})
+	}
+
+	static existsFile(path, callback=()=>{}) {
+		let handler = (err, callback) => {
+			if(err.code === FileError.NOT_FOUND_ERR){
+				callback(null, false)	
+			} else {
+				ErrorHandler.generate('Make dir ' + path, callback)
+			}
+		}
+
+		FS.root.getFile(path, {}, direntry => {
+			callback(null, true)
+		}, err => {handler(err, callback)})
 	}
 
 	static mkdir(path, callback=()=>{}) {
 			
 		let folders = path.split('/').filter(e => {
-			return e !== '' && e !== '.';
+			return e !== '' && e !== '.'
 		})
 		let createDir = (folders, dir) => {  
 
-		    let parent = dir || FS.root;
+		    let parent = dir || FS.root
 
 			  // Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.  
 			  if (folders[0] == '.' || folders[0] == '') {  
-			    folders = folders.slice(1);  
+			    folders = folders.slice(1)
 			  }
 
 			  parent.getDirectory(folders[0], {create: true}, dirEntry=>{  
 			    // Recursively add the new subfolder (if we still have another to create).  
 			    if (folders.length > 1) {  
-			      	createDir(folders.slice(1), dirEntry);  
+			      	createDir(folders.slice(1), dirEntry)  
 			    } else{
-		    		callback(null, dirEntry);
+		    		callback(null, dirEntry)
 			    }
-			  }, ErrorHandler.generate('Make dir ' + path, callback));  
+			  }, ErrorHandler.generate('Make dir ' + path, callback)) 
 		};  
 
 		createDir(folders);	
@@ -65,7 +94,7 @@ export default class fs {
 				if(option.recursive){
 					dirEntry.removeRecursively(() => {
 						callback(null);
-					}, ErrorHandler.generate('Remove dir ' + path, callback));
+					}, ErrorHandler.generate('Remove dir ' + path, callback))
 				}else{
 					dirEntry.remove(() => {
 						callback(null);

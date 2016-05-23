@@ -63,6 +63,10 @@
 	
 		_fs2.default.init(10 * 10 * 1024, function () {
 	
+			_fs2.default.existsFile('a.td', function (err, exists) {
+				console.log(exists);
+			});
+	
 			_fs2.default.mkdir('/docs/files/', function (err, dirEntry) {
 	
 				console.log('/docs/files/ created successfully');
@@ -175,6 +179,45 @@
 						initialized = true;
 						callback(null, h5fs);
 					}, _ErrorHandler2.default.generate('init file system', callback));
+				});
+			}
+		}, {
+			key: 'existsDir',
+			value: function existsDir(path) {
+				var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+	
+	
+				var handler = function handler(err, callback) {
+					if (err.code === FileError.NOT_FOUND_ERR) {
+						callback(null, false);
+					} else {
+						_ErrorHandler2.default.generate('Make dir ' + path, callback);
+					}
+				};
+	
+				FS.root.getDirectory(path, {}, function (direntry) {
+					callback(null, true);
+				}, function (err) {
+					handler(err, callback);
+				});
+			}
+		}, {
+			key: 'existsFile',
+			value: function existsFile(path) {
+				var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+	
+				var handler = function handler(err, callback) {
+					if (err.code === FileError.NOT_FOUND_ERR) {
+						callback(null, false);
+					} else {
+						_ErrorHandler2.default.generate('Make dir ' + path, callback);
+					}
+				};
+	
+				FS.root.getFile(path, {}, function (direntry) {
+					callback(null, true);
+				}, function (err) {
+					handler(err, callback);
 				});
 			}
 		}, {
@@ -320,15 +363,12 @@
 	
 		_createClass(ErrorHandler, null, [{
 			key: 'generate',
-			value: function generate(_ref) {
+			value: function generate() {
 				var _this = this;
 	
-				var _ref$prefix = _ref.prefix;
-				var prefix = _ref$prefix === undefined ? '' : _ref$prefix;
-				var _ref$callback = _ref.callback;
-				var callback = _ref$callback === undefined ? function (e) {} : _ref$callback;
+				var prefix = arguments.length <= 0 || arguments[0] === undefined ? 'Error' : arguments[0];
+				var callback = arguments.length <= 1 || arguments[1] === undefined ? function (err) {} : arguments[1];
 	
-				!prefix && (prefix = 'Error:');
 				return function (e) {
 					var msg = '';
 	
