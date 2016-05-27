@@ -1,3 +1,11 @@
+const FileError = Object.freeze({
+	QUOTA_EXCEEDED_ERR: 10,
+	NOT_FOUND_ERR: 1,
+	SECURITY_ERR: 2,
+	INVALID_MODIFICATION_ERR: 9,
+	INVALID_STATE_ERR: 7
+})
+
 export default class ErrorHandler {
 
 	static generate( prefix = 'Error', callback = err =>{} ) {

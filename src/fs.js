@@ -4,7 +4,7 @@ const DEFAULT_SIZE = 10 * 1024 * 1024
 let FS = null
 let initialized = false
 let initializing = false
-
+	
 export default class fs {
 
 	constructor() {
@@ -19,7 +19,7 @@ export default class fs {
 		if(initializing) return; //Make sure only one init is executing
 		initializing = true;
 		initialized = false;
-		navigator.webkitPersistentStorage.requestQuota(bytes, grantBytes => {
+		window.navigator.webkitPersistentStorage.requestQuota(bytes, grantBytes => {
 
 			(window.requestFileSystem || window.webkitRequestFileSystem)
 			(window.PERSISTENT, grantBytes, h5fs => {
