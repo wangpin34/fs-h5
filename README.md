@@ -1,6 +1,8 @@
 # fs-h5
 Decorate future HTML5 file api to node style file system api. 
 
+[![Build Status](https://travis-ci.org/wangpin34/fs-h5.svg)](https://travis-ci.org/wangpin34/fs-h5)
+[![Circle CI](https://circleci.com/gh/driftyco/fs-h5.svg?style=svg)](https://circleci.com/gh/driftyco/fs-h5)
 [![NPM](https://nodei.co/npm/fs-h5.png?stars&downloads)](https://nodei.co/npm/fs-h5/)
 
 ## headers-up

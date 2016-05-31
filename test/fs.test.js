@@ -1,11 +1,11 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
 import proxyquire from 'proxyquire'
-import fs from '../src/fs'
 
 describe.only('Test class fs', () => {
 
 	let window
+	let fs
 	let ErrorHandler
 
 	before(() => {
@@ -24,11 +24,10 @@ describe.only('Test class fs', () => {
 			generate: sinon.spy()
 		}
 
-/*		fs = proxyquire('../src/fs.js', {
+		fs = proxyquire('../src/fs', {
 			'./ErrorHandler': ErrorHandler
-		})*/
+		}).default
 
-		console.log('Before call')
 	})
 
 	after(() => {
@@ -37,8 +36,7 @@ describe.only('Test class fs', () => {
 
 	describe('Test static method init', () => {
 
-
-		it('It should be a function', () => {
+		it.skip('It should be a function', () => {
 			expect(fs.init).to.be.a('function')
 		})
 
@@ -47,9 +45,13 @@ describe.only('Test class fs', () => {
 			let callback = sinon.spy()
 			window.navigator.webkitPersistentStorage.requestQuota.callsArgWith(1,bytes)
 			window.requestFileSystem.callsArgWith(2, {})
+			window.requestFileSystem.callsArgWith(3, {})
 			fs.init(1024, callback)
 
 			expect(callback.calledOnce).to.be.ok
+			ErrorHandler.generate()
+			expect(ErrorHandler.generate.called).to.be.ok
+
 		})
 
 
