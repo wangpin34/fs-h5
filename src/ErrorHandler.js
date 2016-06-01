@@ -1,49 +1,40 @@
-const FileError = Object.freeze({
-	QUOTA_EXCEEDED_ERR: 10,
-	NOT_FOUND_ERR: 1,
-	SECURITY_ERR: 2,
-	INVALID_MODIFICATION_ERR: 9,
-	INVALID_STATE_ERR: 7
+import { FileError, Default } from './Constants'
+import Logger from './Logger'
+
+const errorLogger = Logger.newInstance({
+    prefix:'File System error',
+    type: Default.ERROR
 })
 
 export default class ErrorHandler {
 
-	static generate( prefix = 'Error', callback = err =>{} ) {
-		return e => {
-			let msg = ''
-	  
-			  switch (e.code) {  
-			    case FileError.QUOTA_EXCEEDED_ERR:  
-			      msg = 'QUOTA_EXCEEDED_ERR'
-			      break
-			    case FileError.NOT_FOUND_ERR:  
-			      msg = 'NOT_FOUND_ERR'
-			      break
-			    case FileError.SECURITY_ERR:  
-			      msg = 'SECURITY_ERR'
-			      break
-			    case FileError.INVALID_MODIFICATION_ERR:  
-			      msg = 'INVALID_MODIFICATION_ERR'
-			      break
-			    case FileError.INVALID_STATE_ERR:  
-			      msg = 'INVALID_STATE_ERR'
-			      break 
-			    default:
-			      msg = 'Unknown Error'
-			      break 
-			  }
-			  this.logger(prefix + ' / ' + msg, 'error')
-			  callback(new Error(msg))
-		}
-	}
+    static handle( error, action ) {
+        
+        let msg = ''
 
-	static logger(msg = '', type = '') {
-		switch(type){
-			case 'info': console.info(msg); break
-			case 'warn': console.warn(msg); break
-			case 'error': console.error(msg); break
-			default: console.log(msg)
-		}
-	}
+        switch (error.code) {  
+            case FileError.QUOTA_EXCEEDED_ERR:  
+              msg = 'Request quoto exceeded'
+              break
+            case FileError.NOT_FOUND_ERR:  
+              msg = 'Request path not found'
+              break
+            case FileError.SECURITY_ERR:  
+              msg = 'Secerity error occoars'
+              break
+            case FileError.INVALID_MODIFICATION_ERR:  
+              msg = 'Invalid modification occurs'
+              break
+            case FileError.INVALID_STATE_ERR:  
+              msg = 'Invalide state error occurs '
+              break 
+            default:
+              msg = 'An unknow error occurs, please contact dmoneh@163.com for help'
+              break 
+        }
+        msg += ' when ' + action
+        errorLogger.log(msg)
+        return msg
+    }
 
 }
