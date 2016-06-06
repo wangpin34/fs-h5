@@ -18,8 +18,10 @@ export default class fs {
 
 	static requestQuota(bytes=Default.DEFAULT_SIZE) {
 		return new Promise((resolve, reject) => {
-			(window.navigator.webkitPersistentStorage.requestQuota || window.webkitStorageInfo.requestQuota)(window.PERSISTENT, bytes, resolve, err => {
-				let msg = ErrorHandler.handle(err, 'request quota')
+			navigator.webkitPersistentStorage.requestQuota(bytes, grantBytes => {
+				resolve(grantBytes)
+			}, err => {
+				let msg = ErrorHandler.on(err, 'request quota')
 				reject({err, msg})
 			})
 		})
@@ -53,8 +55,8 @@ export default class fs {
 					FS.root.getDirectory(path, {}, (dirEntry) => {
 						resolve({exists:true, dirEntry})
 					}, err => {
-						//Resovle as false if it is not found error
-						if(err.code === FileError.NOT_FOUND_ERR) {
+						//Resovle as false if it is not found error or it is not a directory
+						if(err.code === FileError.NOT_FOUND_ERR || err.code === FileError.TYPE_MISMATCH) {
 							resolve({exists:false})
 						}else{
 							let msg = ErrorHandler.on(err, 'check whether dir ' + path + ' exists')
@@ -68,7 +70,7 @@ export default class fs {
 						resolve({exists:true, fileEntry})
 					}, err => {
 						//Resovle as false if it is not found error
-						if(err.code === FileError.NOT_FOUND_ERR) {
+						if(err.code === FileError.NOT_FOUND_ERR || err.code === FileError.TYPE_MISMATCH) {
 							resolve({exists:false})
 						}else{
 							let msg = ErrorHandler.on(err, 'check whether file' + path + ' exists')
@@ -77,7 +79,7 @@ export default class fs {
 					})
 
 				})
-			]).then([ret1, ret2] => {
+			]).then(([ret1, ret2]) => {
 				if( ret1.exists || ret2.exists){
 					return true
 				}else if( ret1.exists === false || ret2.exists === false){
@@ -170,12 +172,8 @@ export default class fs {
 			  			fileWriter.truncate(data.length)
 			  		},10)
 
-			  		fileWriter.onwriteend = err => {
-			  			if(err){
-			  				onErr(err)
-			  			}else{
-			  				resolve()
-			  			}
+			  		fileWriter.onwriteend = () => {
+			  			resolve()
 			  		}
 
 			  		fileWriter.onerror = onErr
@@ -202,12 +200,8 @@ export default class fs {
 					let bb = new Blob([data])
 					fileWriter.write(bb)
 
-					fileWriter.onwriteend = err => {
-			  			if(err){
-			  				onErr(err)
-			  			}else{
-			  				resolve()
-			  			}
+					fileWriter.onwriteend = () => {
+			  			resolve()
 			  		}
 
 			  		fileWriter.onerror = onErr

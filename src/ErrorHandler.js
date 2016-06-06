@@ -8,7 +8,7 @@ const errorLogger = Logger.newInstance({
 
 export default class ErrorHandler {
 
-    static handle( error, action ) {
+    static on( error, action ) {
         
         let msg = ''
 
