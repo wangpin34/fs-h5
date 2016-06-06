@@ -18,14 +18,19 @@ It's created by es6, so you need to convert it by babel with specify preset.
 npm install fs-h5 --save
 ```
 
-
 ## Links
 
 * [Documents](https://github.com/wangpin34/fs-h5/wiki)
-    
-
-## References
 * [HTML5 filesytem](http://www.html5rocks.com/en/tutorials/file/filesystem/)
+
+## Release log
+* 1.1.4 beta release
+* 1.2.0 promisify and rename several methods
+  ```
+   isInitialized ->  isReady
+   existsDir + existsFile -> existsPath
+  ```
+  Add a new method **requestQuota** for applying persistent storage.
 
 # LICENSE
 **MIT**
