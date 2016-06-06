@@ -12,7 +12,7 @@ export default class fs {
 
 	}
 
-	static isInitialized() {
+	static isReady() {
 		return initialized
 	}
 
