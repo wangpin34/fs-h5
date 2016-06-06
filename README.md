@@ -26,10 +26,12 @@ npm install fs-h5 --save
 ## Release log
 * 1.1.4 beta release
 * 1.2.0 promisify and rename several methods
+* 
   ```
    isInitialized ->  isReady
    existsDir + existsFile -> existsPath
   ```
+  
   Add a new method **requestQuota** for applying persistent storage.
 
 # LICENSE
