@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
-import proxyquire from 'proxyquire'
 
-describe.only('Test class fs', () => {
+describe.skip('Test class fs', () => {
 
 	let window
 	let fs

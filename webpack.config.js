@@ -3,13 +3,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-    devtool: 'sourcemap',
     entry: [
-        './example/example' // Your appʼs entry point
+        './index' // Your appʼs entry point
     ],
     output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'example.js'
+        path: path.join(__dirname, 'dist'),
+        filename: 'fs-h5.js'
     },
     resolve: {
         extensions: ['.js']

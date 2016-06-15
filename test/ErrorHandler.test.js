@@ -3,41 +3,50 @@ import sinon from 'sinon'
 import ErrorHandler from '../src/ErrorHandler'
 
 describe('Test Class ErrorHandler', () => {
-	
-	describe('Test static method generate',() => {
+    let log
+    let Constants
 
-		let logger = sinon.spy()
+    before(() => {
+        log = sinon.spy()
+        Constants = {
+            Default: {
+                DEFAULT_SIZE: 10*1024*1024,
+                ROOT: '/',
+                ERROR:'error'
+            },
+            FileError: {
+                QUOTA_EXCEEDED_ERR: 10,
+                NOT_FOUND_ERR: 1,
+                SECURITY_ERR: 2,
+                INVALID_MODIFICATION_ERR: 9,
+                INVALID_STATE_ERR: 7
+            }
+        }
 
-		before(() => {
-			sinon.stub(ErrorHandler, 'logger', logger)
-		})
+        ErrorHandler.__Rewire__('Constants',Constants)
+        ErrorHandler.__Rewire__('./Logger',{
+            newInstance: ({}) => {
+                return {
+                    log: log
+                }
+            }
+        })
 
-		after(() => {
-			ErrorHandler.logger.restore()
-		})
+    })
 
-		it('It should be a function', () => {
-			expect(ErrorHandler.generate).to.be.a('function')
-		})
+    after(() => {})
 
-		it('It should return a function, it is an error handler', () => {
-			expect(ErrorHandler.generate()).to.be.a('function')
-		})
+    describe('Test method on',() => {
 
-		it('Returned error handler should call the passed in callback , and looger error', () => {
-			let callback = sinon.spy()
-			let error = {code:10}
-			ErrorHandler.generate('', callback)(error)
-			expect(callback.calledOnce).to.be.ok
-			expect(logger.calledOnce).to.be.ok
-		})
-	})
+        it('It should be a function', () => {
+            expect(ErrorHandler.on).to.be.a('function')
+        })
 
-	describe('Test static method logger', () => {
+        it('It should return a msg and its type should be string', () => {
+            let msg = ErrorHandler.on({code:Constants.FileError.QUOTA_EXCEEDED_ERR},'test')
+            expect(log.calledOnce).to.be.ok
+            expect(msg).to.be.a('string')
+        })
+    })
 
-		it('It should be a function', () => {
-			expect(ErrorHandler.logger).to.be.a('function')
-		})
-
-	})
 })
