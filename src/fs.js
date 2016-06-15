@@ -224,7 +224,7 @@ export default class fs {
 				fileEntry.file(file => {
 					let fr = new FileReader()  
 			       	fr.onloadend = e => {  
-			         	resolve(this.result)
+			         	resolve(e.target.result)
 			       	}
 			       	fr.readAsText(file)
 				}, onErr)
