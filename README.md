@@ -47,7 +47,9 @@ npm run build-prod
   
   Add a new method **requestQuota** for applying persistent storage.
 
-* 1.2.1 Build es5 release
+* 1.2.1 Update readme
+
+* 1.2.2 Build es5 release
   
   Previously the first step to use fs-h5 is compile it through babel. It is not very friendly because some one doesn't use es2015 currently. So I build a pure es5 code and publish it.
 
