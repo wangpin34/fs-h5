@@ -10,15 +10,28 @@ Decorate HTML5 file API to node style file system.
 
 Actuall it's only supported by Chrome, and also several envs which are using Chrome core like nwjs, cordova etc. It is still useful.
 
-It's created by es6, so you need to convert it by babel with specify preset.
-
 ## Install
 
 ```javascript
 npm install fs-h5 --save
 ```
 
-## Links
+Or download standload file in dist folder.
+
+## Local Build
+
+You can modify the source code in folder **src** and build for your usage.
+
+* Build a dev version
+```
+npm run build
+```
+* Build a prod version
+```
+npm run build-prod
+```
+
+## Inspire By & Reference
 
 * [Documents](https://github.com/wangpin34/fs-h5/wiki)
 * [HTML5 filesytem](http://www.html5rocks.com/en/tutorials/file/filesystem/)
@@ -26,13 +39,17 @@ npm install fs-h5 --save
 ## Release log
 * 1.1.4 beta release
 * 1.2.0 promisify and rename several methods
-* 
+ 
   ```
    isInitialized ->  isReady
    existsDir + existsFile -> existsPath
   ```
   
   Add a new method **requestQuota** for applying persistent storage.
+
+* 1.2.1 Build es5 release
+  
+  Previously the first step to use fs-h5 is compile it through babel. It is not very friendly because some one doesn't use es2015 currently. So I build a pure es5 code and publish it.
 
 # LICENSE
 **MIT**
