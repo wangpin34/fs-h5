@@ -1,5 +1,5 @@
 # fs-h5
-Decorate HTML5 file API to node style file system. 
+ HTML5 file API wrapper as node style file system. 
 
 [![Build Status](https://travis-ci.org/wangpin34/fs-h5.svg)](https://travis-ci.org/wangpin34/fs-h5)
 [![Circle CI](https://circleci.com/gh/driftyco/fs-h5.svg?style=svg)](https://circleci.com/gh/driftyco/fs-h5)
@@ -16,22 +16,7 @@ Actuall it's only supported by Chrome, and also several envs which are using Chr
 npm install fs-h5 --save
 ```
 
-Or download standload file in dist folder.
-
-## Local Build
-
-You can modify the source code in folder **src** and build for your usage.
-
-* Build a dev version
-```
-npm run build
-```
-* Build a prod version
-```
-npm run build-prod
-```
-
-## Inspire By & Reference
+## Inspired & Reference
 
 * [Documents](https://github.com/wangpin34/fs-h5/wiki)
 * [HTML5 filesytem](http://www.html5rocks.com/en/tutorials/file/filesystem/)
