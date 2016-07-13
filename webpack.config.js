@@ -4,19 +4,16 @@ var path = require('path');
 
 module.exports = {
     entry: [
-        './index' // Your appʼs entry point
+        './example/index' // Your appʼs entry point
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'fs-h5.js'
+        path: path.join(__dirname, 'example'),
+        filename: 'index.build.js'
     },
     resolve: {
         extensions: ['.js']
     },
     module: {
-        loaders: [
-            { test: /\.js$/, loader:'babel' }
-        ]
+        loaders: []
     }
-    //,plugins: [commonsPlugin,new webpack.HotModuleReplacementPlugin( {hot: true} )]
 };

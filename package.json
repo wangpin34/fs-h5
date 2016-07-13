@@ -1,12 +1,12 @@
 {
   "name": "fs-h5",
-  "version": "1.2.1",
-  "description": "HTML5 file API",
-  "main": "index.js",
+  "version": "1.2.2",
+  "description": "HTML5 file API wrapper",
+  "main": "./distribution/fs.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "webpack --progress --colors",
-    "compile": "gulp"
+    "build": "gulp build",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/wangpin34/fs-h5#readme",
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-cli": "^6.10.1",
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-es2015-arrow-functions": "^6.5.2",
@@ -34,9 +35,15 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
+    "gulp-webpack": "^1.5.0",
     "mocha": "^2.4.5",
     "sinon": "^1.17.4",
+    "vinyl-named": "^1.1.0",
     "webpack": "^1.13.0"
   },
   "dependencies": {
